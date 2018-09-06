@@ -1,0 +1,22 @@
+<Application x:Class="shopfloorcs.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:shopfloorcs" StartupUri="MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+  <Application.Resources>
+    <!--<DataTemplate x:Key="UserDetails">
+            <Border BorderThickness="0" Background="BlanchedAlmond" Padding="10">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="12" Text="First Name: " VerticalAlignment="Center" />
+                        <TextBox x:Name="txtFirstName" FontSize="16" Foreground="MidnightBlue" Text="{Binding UserFirstName}" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="12" Text="Last Name: " VerticalAlignment="Center" />
+                        <TextBox x:Name="txtLastName" FontSize="16" Foreground="MidnightBlue" Text="{Binding UserLastName}" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel>
+                        <Button x:Name="btnUpdate" Content="Update" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnUpdate_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </DataTemplate>-->
+
+  </Application.Resources>
+</Application>

@@ -74,34 +74,39 @@ namespace shopfloorcs.ViewModels
 
         }
 
-        public List<User> getUserRoles()
+        public List<User> UserRoles
         {
-            List<User> userRoleList = new List<User>();
-            string queryUserRoles = "Select * from userroles";
-            reader = db.QueryCommand(queryUserRoles);
-
-            try
+            get
             {
-                if (reader.HasRows)
+                List<User> userRoleList = new List<User>();
+                string queryUserRoles = "Select * from userroles";
+                reader = db.QueryCommand(queryUserRoles);
+
+                try
                 {
-                    while (reader.Read())
+                    if (reader.HasRows)
                     {
-                        userRoleList.Add(new User()
+                        while (reader.Read())
                         {
-                            UserRole = reader[1].ToString()
+                            userRoleList.Add(new User()
+                            {
+                                UserRole = reader[1].ToString()
 
-                        });
+                            });
 
+                        }
                     }
                 }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            reader.Close();
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                reader.Close();
 
-            return userRoleList;
+                return userRoleList;
+
+            }
+            
         }
     }
 }

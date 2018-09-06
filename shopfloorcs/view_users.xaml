@@ -34,7 +34,7 @@
         <Label Grid.ColumnSpan="4" Content="KAD ShopFloor System" HorizontalAlignment="Center" Margin="10" FontWeight="Bold" FontSize="30" FontFamily="Segoe UI" Foreground="White"/>
         <Separator Grid.ColumnSpan="4" Grid.RowSpan="3" Background="White" Margin="0,-35,-0.4,39.2"/>
         <Label Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" x:Name="labelLoginName" Content="Label" />
-        <DataGrid AutoGenerateColumns="False" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="3" x:Name="userDataGrid" Margin="70,0.2,70,0" ItemsSource="{Binding User}">
+        <DataGrid DataContext="{StaticResource uvm}" AutoGenerateColumns="False" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="3" x:Name="userDataGrid" Margin="70,0.2,70,0" ItemsSource="{Binding Users}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding UserId}"/>
                 <DataGridTextColumn Header="Username" Binding="{Binding UserName}"/>
@@ -60,11 +60,14 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontSize="12" Text="User Role: " VerticalAlignment="Center" />
-                                <ComboBox DataContext="{StaticResource uvm}" x:Name="cbUserRole" FlowDirection="LeftToRight" FontSize="16" Foreground="MidnightBlue" HorizontalAlignment="Stretch" VerticalAlignment="Center" Loaded="cbUserRole_Loaded" SelectedItem="{Binding UserRole, Mode=TwoWay}" />
+                                <!--<ComboBox x:Name="cbUserRole" FlowDirection="LeftToRight" FontSize="16" Foreground="MidnightBlue" HorizontalAlignment="Stretch" VerticalAlignment="Center" Loaded="cbUserRole_Loaded" SelectedItem="{Binding User.UserRole, Mode=TwoWay}" />-->
+                                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type DataGrid}},
+                                    Path=DataContext.UserRoles}" x:Name="cbUserRole" FlowDirection="LeftToRight" FontSize="16" Foreground="MidnightBlue" 
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectedItem="{Binding UserRole,Mode=TwoWay}"></ComboBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontSize="12" Text="User Status: " VerticalAlignment="Center" />
-                                <ComboBox x:Name="cbUserStatus" FlowDirection="LeftToRight" FontSize="16" Foreground="MidnightBlue" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectedIndex="{Binding UserStatus, Converter={StaticResource boolToIndexConverter}}" />
+                                <ComboBox ItemsSource="{Binding}" x:Name="cbUserStatus" FlowDirection="LeftToRight" FontSize="16" Foreground="MidnightBlue" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectedIndex="{Binding UserStatus, Converter={StaticResource boolToIndexConverter}}" />
                             </StackPanel>
                             <StackPanel>
                                 <Button x:Name="btnUpdate" Content="Update" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnUpdate_Click"/>

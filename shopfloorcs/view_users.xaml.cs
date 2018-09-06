@@ -35,8 +35,8 @@ namespace shopfloorcs
             labelLogin = loginName;
             labelLoginName.Content = labelLogin;
 
-            var userList = new UserViewModel().Users;
-            userDataGrid.ItemsSource = userList;
+            //var userList = new UserViewModel().Users;
+            //userDataGrid.ItemsSource = userList;
 
         }
 
@@ -95,9 +95,9 @@ namespace shopfloorcs
 
         private void cbUserRole_Loaded(object sender, RoutedEventArgs e)
         {
-            var userRolesList = new UserViewModel().getUserRoles();
-            ComboBox cbUserRole = (ComboBox)GetChildren(userDataGrid).FirstOrDefault(x => x.Name == "cbUserRole");
-            cbUserRole.ItemsSource = userRolesList;
+            //var userRolesList = new UserViewModel().getUserRoles();
+            //ComboBox cbUserRole = (ComboBox)GetChildren(userDataGrid).FirstOrDefault(x => x.Name == "cbUserRole");
+            //cbUserRole.ItemsSource = userRolesList;
 
             
         }

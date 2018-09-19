@@ -53,7 +53,7 @@ namespace shopfloorcs
                 reader = cmd.ExecuteReader();
             } catch (MySqlException ex)
             {
-                MessageBox.Show("Catch " + ex.ToString());
+                MessageBox.Show("Query command error:  " + ex.ToString());
             }
             return reader;
         }

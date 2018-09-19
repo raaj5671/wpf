@@ -1,0 +1,84 @@
+﻿<Window x:Class="shopfloorcs.view_users"
+        x:Name="viewUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:shopfloorcs"
+        xmlns:vm="clr-namespace:shopfloorcs.ViewModels"
+        xmlns:cv="clr-namespace:shopfloorcs.ViewModels.Converters"
+        mc:Ignorable="d"
+        Title="Home" Height="450" Width="700">
+    <Window.Resources>
+        <vm:UserViewModel x:Key="uvm"/>
+        <cv:InverseBooleanConverter x:Key="inverseBooleanConverter"/>
+    </Window.Resources>
+    
+    <Grid Background="#FF006E8C">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+
+        <Label Grid.ColumnSpan="4" Content="KAD ShopFloor System" HorizontalAlignment="Center" Margin="10" FontWeight="Bold" FontSize="30" FontFamily="Segoe UI" Foreground="White"/>
+        <Separator Grid.ColumnSpan="4" Grid.RowSpan="3" Background="White" Margin="0,-35,-0.4,39.2"/>
+        <Label Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" x:Name="labelLoginName" Content="Label" />
+        <DataGrid DataContext="{StaticResource uvm}" AutoGenerateColumns="False" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="3" x:Name="userDataGrid" Margin="70,0.2,70,0" ItemsSource="{Binding Users}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding UserId}"/>
+                <DataGridTextColumn Header="Username" Binding="{Binding UserName}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding UserEmail}"/>
+                <DataGridTextColumn Header="User Role" Binding="{Binding UserRole}"/>
+                <DataGridTextColumn Header="User Status" Binding="{Binding UserStatus}"/>
+                <DataGridTextColumn Header="Created Date" Binding="{Binding UserCreatedDate}"/>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="0" Background="BlanchedAlmond" Padding="10">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="12" Text="User ID: " VerticalAlignment="Center" />
+                                <TextBlock x:Name="txtBlockId" FontSize="16" Foreground="MidnightBlue" Text="{Binding UserId, Mode=TwoWay}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="12" Text="First Name: " VerticalAlignment="Center" />
+                                <TextBox x:Name="txtFirstName" FontSize="16" Foreground="MidnightBlue" Text="{Binding UserFirstName, Mode=TwoWay}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="12" Text="Last Name: " VerticalAlignment="Center" />
+                                <TextBox x:Name="txtLastName" FontSize="16" Foreground="MidnightBlue" Text="{Binding UserLastName}" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="12" Text="User Role: " VerticalAlignment="Center" />
+                                <!--<ComboBox x:Name="cbUserRole" FlowDirection="LeftToRight" FontSize="16" Foreground="MidnightBlue" HorizontalAlignment="Stretch" VerticalAlignment="Center" Loaded="cbUserRole_Loaded" SelectedItem="{Binding User.UserRole, Mode=TwoWay}" />-->
+                                <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type DataGrid}},
+                                    Path=DataContext.UserRoles}" SelectedValue="{Binding UserRole,Mode=TwoWay}" SelectedValuePath="UserRole" DisplayMemberPath="UserRole" x:Name="cbUserRole" FlowDirection="LeftToRight" FontSize="16" Foreground="MidnightBlue" 
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="12" Text="User Status: " VerticalAlignment="Center" />
+                                <!--<ComboBox ItemsSource="{Binding}" x:Name="cbUserStatus" FlowDirection="LeftToRight" FontSize="16" Foreground="MidnightBlue" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectedIndex="{Binding UserStatus, Converter={StaticResource boolToIndexConverter}}" />-->
+                                <CheckBox x:Name="cbUserStatus" Content="Disable" IsChecked="{Binding UserStatus, Converter={StaticResource inverseBooleanConverter}}"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <Button x:Name="btnUpdate" Content="Update" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnUpdate_Click"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+        <Button x:Name="backBtn" Content="Back" Grid.Column="0" Grid.Row="5" Margin="71,24.8,0.6,24.6" HorizontalAlignment="Center" Width="102" Click="backBtn_Click"/>
+    </Grid>
+</Window>

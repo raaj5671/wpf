@@ -16,6 +16,8 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using shopfloorcs.Models;
 using shopfloorcs.ViewModels;
+using System.Windows.Interop;
+using System.Runtime.InteropServices;
 
 namespace shopfloorcs
 {
@@ -24,10 +26,13 @@ namespace shopfloorcs
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
@@ -66,7 +71,7 @@ namespace shopfloorcs
                 try
                 {
                     string query;
-                    query = "Select * FROM users WHERE USER_NAME= '" + user.UserName + "' and USER_PASSWORD= '" + user.UserPassword + "' ";
+                    query = "Select * FROM users WHERE USER_NAME= '" + user.UserName + "' and USER_PASSWORD= '" + user.UserPassword + "' and USER_STATUS = '1'";
                     reader = db.QueryCommand(query);
 
                     if (reader.HasRows)
@@ -103,7 +108,7 @@ namespace shopfloorcs
                     }
                     else
                     {
-                        MessageBox.Show("Invalid credentials");
+                        MessageBox.Show("You have entered invalid credentials or either your account is disabled by the admin.\n\nKindly contact the admin");
                     }
                 }
                 catch (Exception ex)

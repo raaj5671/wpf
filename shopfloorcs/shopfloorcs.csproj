@@ -79,41 +79,46 @@
     <Compile Include="AdminHome.xaml.cs">
       <DependentUpon>AdminHome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="edit_user.xaml.cs">
-      <DependentUpon>edit_user.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Enum\Status.cs" />
     <Compile Include="Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="kitting_home.xaml.cs">
+    <Compile Include="ViewModels\Commands\CustomCommand.cs" />
+    <Compile Include="ViewModels\Commands\NewProductionLineConfigCommand.cs" />
+    <Compile Include="ViewModels\Commands\UpdateProductionLineConfigCommand.cs" />
+    <Compile Include="ViewModels\Converters\StatusToBooleanConverter.cs" />
+    <Compile Include="Views\kitting_home.xaml.cs">
       <DependentUpon>kitting_home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductionLineConfig.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="normal_home.xaml.cs">
+    <Compile Include="Views\normal_home.xaml.cs">
       <DependentUpon>normal_home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="npi_home.xaml.cs">
+    <Compile Include="Views\npi_home.xaml.cs">
       <DependentUpon>npi_home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Commands\RegisterCommand.cs" />
-    <Compile Include="ViewModels\Converters\BoolToIndexConverter.cs" />
+    <Compile Include="ViewModels\Converters\InverseBooleanConverter.cs" />
+    <Compile Include="ViewModels\ProductionLineConfigViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
-    <Compile Include="view_users.xaml.cs">
+    <Compile Include="Views\production_line_config.xaml.cs">
+      <DependentUpon>production_line_config.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\production_line_config_home.xaml.cs">
+      <DependentUpon>production_line_config_home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\view_users.xaml.cs">
       <DependentUpon>view_users.xaml</DependentUpon>
     </Compile>
     <Page Include="AdminHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="admin_home.xaml">
+    <Page Include="Views\admin_home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="create_user.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="edit_user.xaml">
+    <Page Include="Views\create_user.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,7 +126,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="kitting_home.xaml">
+    <Page Include="Views\kitting_home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,14 +134,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="admin_home.xaml.cs">
+    <Compile Include="Views\admin_home.xaml.cs">
       <DependentUpon>admin_home.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="create_user.xaml.cs">
+    <Compile Include="Views\create_user.xaml.cs">
       <DependentUpon>create_user.xaml</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
@@ -144,15 +149,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="normal_home.xaml">
+    <Page Include="Views\normal_home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="npi_home.xaml">
+    <Page Include="Views\npi_home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view_users.xaml">
+    <Page Include="Views\production_line_config.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\production_line_config_home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\view_users.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,6 +197,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\productionline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\processconfig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\partconfig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\workshift.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\productconfig.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

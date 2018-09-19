@@ -5,13 +5,13 @@ using System.Data;
 using System.Windows;
 using GalaSoft.MvvmLight.Ioc;
 using CommonServiceLocator;
-using shopfloorcs.ViewModels.Commands;
 using System.Collections.ObjectModel;
 using System;
+using System.ComponentModel;
 
 namespace shopfloorcs.ViewModels
 {
-    public class UserViewModel
+    public class UserViewModel : INotifyPropertyChanged
     {
         Database db = new Database();
         MySqlDataReader reader;
@@ -23,14 +23,11 @@ namespace shopfloorcs.ViewModels
         public User User
         {
             get { return user; }
-            set { user = value; }
-        }
-
-        public RegisterCommand RegisterCommand { get; set; }
-
-        public UserViewModel()
-        {
-            RegisterCommand = new RegisterCommand(this);
+            set
+            {
+                user = value;
+                OnPropertyChanged("User");
+            }
         }
 
 
@@ -56,7 +53,8 @@ namespace shopfloorcs.ViewModels
                         UserEmail = reader[6].ToString(),
                         UserFirstName = reader[7].ToString(),
                         UserLastName = reader[8].ToString(),
-                        UserRole = reader[3].ToString()
+                        UserRole = reader[3].ToString(),
+                        UserStatus = Convert.ToBoolean(reader[4].ToString())
 
                     });
                 }
@@ -108,5 +106,38 @@ namespace shopfloorcs.ViewModels
             }
             
         }
+
+        //private bool userstatus;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        //public bool UserStatus
+        //{
+        //    get
+        //    {
+        //        return userstatus;
+        //    }
+
+        //    set
+        //    {
+        //        if (value == userstatus)
+        //        {
+        //            userstatus = value;
+        //            OnPropertyChanged(nameof(UserStatus));
+
+
+        //        }
+        //    }
+        //}
+
+
     }
 }

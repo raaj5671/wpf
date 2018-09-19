@@ -115,8 +115,12 @@ namespace shopfloorcs.Models
             get { return userstatus; }
             set
             {
-                userstatus = value;
-                OnPropertyChanged("UserStatus");
+                if(value != userstatus)
+                {
+                    userstatus = value;
+                    OnPropertyChanged(nameof(UserStatus));
+                }
+                
             }
         }
 

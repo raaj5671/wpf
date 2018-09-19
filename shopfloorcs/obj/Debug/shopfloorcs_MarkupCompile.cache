@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\rlokanathan\Documents\Visual Studio 2015\Projects\wpfshopfloorcs\shopfloorcs\shopfloorcs\App.xaml
-101203281181
+11841791869
 
-19-1085258739
+26824683792
 701959142085
-AdminHome.xaml;admin_home.xaml;create_user.xaml;edit_user.xaml;Home.xaml;kitting_home.xaml;MainWindow.xaml;normal_home.xaml;npi_home.xaml;view_users.xaml;
+AdminHome.xaml;Views\admin_home.xaml;Views\create_user.xaml;Home.xaml;Views\kitting_home.xaml;MainWindow.xaml;Views\normal_home.xaml;Views\npi_home.xaml;Views\production_line_config.xaml;Views\production_line_config_home.xaml;Views\view_users.xaml;
 
 False
 
